@@ -85,14 +85,29 @@ public class Ball {
         g.drawOval(x, y, size, size);
     }
 
+    public void back() {
+        if(x > Arena.xSize - size + 1) {
+            x = Arena.xSize - size - 1;
+        }
+        if(y > Arena.ySize - size + 1) {
+            y = Arena.ySize - size - 1;
+        }
+        if (x < 0 - 1) {
+            x = 1;
+        }
+        if(y < 0 - 1) {
+            y = 1;
+        }
+    }
+
     public void bounce() {
         if (x > Arena.xSize - size || x < 0) {
-            xSpeed = -1 * ((int) (Math.random() * 17) * xSpeed / Math.abs(xSpeed));
-
-            if (y > Arena.ySize - size || y < 0) {
-                ySpeed = -1 * ((int) (Math.random() * 17) * ySpeed / Math.abs(ySpeed));
-            }
+            xSpeed = -1 * xSpeed;
         }
+        if (y > Arena.ySize - size || y < 0) {
+            ySpeed = -1 * ySpeed;
+        }
+        back();
     }
 
     public void move(Graphics g){
