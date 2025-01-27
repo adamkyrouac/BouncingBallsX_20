@@ -8,6 +8,8 @@ public class Ball {
     private int size;
     private int x;
     private int y;
+    private int xCenter;
+    private int yCenter;
     private int xSpeed;
     private int ySpeed;
     private int radius;
@@ -23,20 +25,25 @@ public class Ball {
         ySpeed = inYSpeed;
         fill = inFill;
         radius = size / 2;
+        xCenter = x + radius;
+        yCenter = y + radius;
     }
 
 
     //SETTER METHODS
     public void setSize(int size) {
         this.size = size;
+        radius = size / 2;
     }
 
     public void setX(int x) {
         this.x = x;
+        xCenter = x + radius;
     }
 
     public void setY(int y) {
         this.y = y;
+        yCenter = y + radius;
     }
 
     public void setxSpeed(int xSpeed) {
@@ -65,6 +72,14 @@ public class Ball {
         return y;
     }
 
+    public int getXCenter(){
+        return xCenter;
+    }
+
+    public int getYCenter(){
+        return yCenter;
+    }
+
     public int getxSpeed() {
         return xSpeed;
     }
@@ -88,15 +103,19 @@ public class Ball {
     public void back() {
         if(x > Arena.xSize - size + 1) {
             x = Arena.xSize - size - 1;
+            xCenter = x + radius;
         }
         if(y > Arena.ySize - size + 1) {
             y = Arena.ySize - size - 1;
+            yCenter = y + radius;
         }
         if (x < 0 - 1) {
             x = 1;
+            xCenter = x + radius;
         }
         if(y < 0 - 1) {
             y = 1;
+            yCenter = x + radius;
         }
     }
 
@@ -112,8 +131,12 @@ public class Ball {
 
     public void move(Graphics g){
         x += xSpeed;
+        xCenter = x + radius;
         y += ySpeed;
+        yCenter = y + radius;
         bounce();
     }
 
+    // make the balls bounce off each other
+    // make the balls bounce off the walls at random angles.
 }
