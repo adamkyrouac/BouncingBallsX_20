@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLOutput;
 
 
 public class Ball {
@@ -13,6 +11,8 @@ public class Ball {
     private int yCenter;
     private int xSpeed;
     private int ySpeed;
+    int xDir;
+    int yDir;
     private double speed;
     private int radius;
     private Color fill;
@@ -25,13 +25,16 @@ public class Ball {
         y = inY;
         xSpeed = inXSpeed;
         ySpeed = inYSpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
         fill = inFill;
         radius = size / 2;
         xCenter = x + radius;
         yCenter = y + radius;
     }
-
 
     //SETTER METHODS
     public void setSize(int size) {
@@ -51,12 +54,20 @@ public class Ball {
 
     public void setxSpeed(int xSpeed) {
         this.xSpeed = xSpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
 
     }
 
     public void setySpeed(int ySpeed) {
         this.ySpeed = ySpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
 
     }
@@ -129,27 +140,39 @@ public class Ball {
     public void bounce() {
         if (x > Arena.xSize - size || x < 0) {
             //xSpeed = -1 * xSpeed;
-            xSpeed = (int)(Math.random() * 37 - 16);
+            xSpeed = -1 * xDir * (int)(Math.random() * speed);
             ySpeed = (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
-            System.out.println("OG Speed: " + speed);
-            speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
-            System.out.println("New Speed: " + speed);
+            System.out.println("X Speed: " + xSpeed + " Y Speed: " + ySpeed);
+            if(xSpeed > 0) {xDir = 1;}
+            if(xSpeed < 0) {xDir = -1;}
+            if(ySpeed > 0) {yDir = 1;}
+            if(ySpeed < 0) {yDir = -1;}
         }
         if (y > Arena.ySize - size || y < 0) {
             //ySpeed = -1 * ySpeed;
-            ySpeed = (int)(Math.random() * 37 - 16);
+            ySpeed = -1 * yDir * (int)(Math.random() * speed);
             xSpeed = (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
-            System.out.println("OG Speed: " + speed);
-            speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
-            System.out.println("New Speed: " + speed);
+            System.out.println("X Speed: " + xSpeed + " Y Speed: " + ySpeed);
+            if(xSpeed > 0) {xDir = 1;}
+            if(xSpeed < 0) {xDir = -1;}
+            if(ySpeed > 0) {yDir = 1;}
+            if(ySpeed < 0) {yDir = -1;}
         }
         back();
     }
 
     public void move(Graphics g){
         x += xSpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
         xCenter = x + radius;
         y += ySpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
         yCenter = y + radius;
         bounce();
     }
