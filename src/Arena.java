@@ -34,7 +34,6 @@ public class Arena extends JPanel{
         });
     }
 
-
     //Ball ball = new Ball(50, 0, 0, 16, 8, Color.BLUE);
     public void balls() {
         for (int i = 0; i < balls.length; i++) {
@@ -48,12 +47,11 @@ public class Arena extends JPanel{
             //System.out.println("Size: " + rSize + " X: " + rX + " Y: " + rY + " XS: " + rXS + " YS: " + rYS + " Color: " + rColor);
 
             balls[i] = new Ball(rSize, rX, rY, rXS, rYS, rColor);
-            System.out.println("balls[" + i + "] created");
         }
     }
-    public int getCount(){
-        return balls.length;
-    }
+//    public int getCount(){
+//        return balls.length;
+//    }
 
     @Override
     public void paintComponent(Graphics g){

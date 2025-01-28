@@ -7,15 +7,16 @@ public class Ball {
     private int size;
     private int x;
     private int y;
-    private int xCenter;
-    private int yCenter;
+    private double xCenter;
+    private double yCenter;
     private int xSpeed;
     private int ySpeed;
     int xDir;
     int yDir;
     private double speed;
-    private int radius;
+    private double radius;
     private Color fill;
+//    private double[] distance = new double[Arena.getCount() - 1];
 
 
     //CONSTRUCTOR
@@ -31,7 +32,7 @@ public class Ball {
         if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
         fill = inFill;
-        radius = size / 2;
+        radius = size / 2.0;
         xCenter = x + radius;
         yCenter = y + radius;
     }
@@ -39,7 +40,7 @@ public class Ball {
     //SETTER METHODS
     public void setSize(int size) {
         this.size = size;
-        radius = size / 2;
+        //radius = size / 2;
     }
 
     public void setX(int x) {
@@ -56,16 +57,12 @@ public class Ball {
         this.xSpeed = xSpeed;
         if(xSpeed > 0) {xDir = 1;}
         if(xSpeed < 0) {xDir = -1;}
-        if(ySpeed > 0) {yDir = 1;}
-        if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
 
     }
 
     public void setySpeed(int ySpeed) {
         this.ySpeed = ySpeed;
-        if(xSpeed > 0) {xDir = 1;}
-        if(xSpeed < 0) {xDir = -1;}
         if(ySpeed > 0) {yDir = 1;}
         if(ySpeed < 0) {yDir = -1;}
         speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
@@ -78,6 +75,10 @@ public class Ball {
 
 
     //GETTER METHODS
+    public double getRadius() {
+        return radius;
+    }
+
     public int getSize() {
         return size;
     }
@@ -90,11 +91,11 @@ public class Ball {
         return y;
     }
 
-    public int getXCenter(){
+    public double getXCenter(){
         return xCenter;
     }
 
-    public int getYCenter(){
+    public double getYCenter(){
         return yCenter;
     }
 
@@ -116,6 +117,10 @@ public class Ball {
         g.fillOval(x, y, size, size);
         g.setColor(Color.BLACK);
         g.drawOval(x, y, size, size);
+        //for(int i = 0; i < distance.length; i++) {
+        //    distance[i] = Math.abs(Math.pow(/*other xCenter*/ - xCenter, 2) + Math.pow(/*other yCenter*/ - yCenter, 2));
+        //}
+
     }
 
     public void back() {
@@ -127,11 +132,11 @@ public class Ball {
             y = Arena.ySize - size - 1;
             yCenter = y + radius;
         }
-        if (x < 0 - 1) {
+        if (x < -1) {
             x = 1;
             xCenter = x + radius;
         }
-        if(y < 0 - 1) {
+        if(y < -1) {
             y = 1;
             yCenter = x + radius;
         }
@@ -144,7 +149,6 @@ public class Ball {
             xSpeed = -1 * xDir * (int)(Math.random() * speed);
             // Sets the y speed to
             ySpeed = yDir * (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
-            System.out.println("X Speed: " + xSpeed + " Y Speed: " + ySpeed);
             if(xSpeed > 0) {xDir = 1;}
             if(xSpeed < 0) {xDir = -1;}
             if(ySpeed > 0) {yDir = 1;}
@@ -162,16 +166,19 @@ public class Ball {
         back();
     }
 
+//    public void ballBounce(){
+//        for(int i = 0; i < distance.length; i++) {
+//            if(distance[i] < radius + /*other radius*/);
+//            System.out.println("Balls " + );
+//        }
+//    }
+
     public void move(Graphics g){
         x += xSpeed;
         if(xSpeed > 0) {xDir = 1;}
         if(xSpeed < 0) {xDir = -1;}
-        if(ySpeed > 0) {yDir = 1;}
-        if(ySpeed < 0) {yDir = -1;}
         xCenter = x + radius;
         y += ySpeed;
-        if(xSpeed > 0) {xDir = 1;}
-        if(xSpeed < 0) {xDir = -1;}
         if(ySpeed > 0) {yDir = 1;}
         if(ySpeed < 0) {yDir = -1;}
         yCenter = y + radius;
