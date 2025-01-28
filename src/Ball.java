@@ -140,8 +140,10 @@ public class Ball {
     public void bounce() {
         if (x > Arena.xSize - size || x < 0) {
             //xSpeed = -1 * xSpeed;
+            // Sets the x speed to a random number (0, total speed) that is int he opposite direction, then rounds down
             xSpeed = -1 * xDir * (int)(Math.random() * speed);
-            ySpeed = (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+            // Sets the y speed to
+            ySpeed = yDir * (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
             System.out.println("X Speed: " + xSpeed + " Y Speed: " + ySpeed);
             if(xSpeed > 0) {xDir = 1;}
             if(xSpeed < 0) {xDir = -1;}
@@ -151,8 +153,7 @@ public class Ball {
         if (y > Arena.ySize - size || y < 0) {
             //ySpeed = -1 * ySpeed;
             ySpeed = -1 * yDir * (int)(Math.random() * speed);
-            xSpeed = (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
-            System.out.println("X Speed: " + xSpeed + " Y Speed: " + ySpeed);
+            xSpeed = xDir * (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
             if(xSpeed > 0) {xDir = 1;}
             if(xSpeed < 0) {xDir = -1;}
             if(ySpeed > 0) {yDir = 1;}
