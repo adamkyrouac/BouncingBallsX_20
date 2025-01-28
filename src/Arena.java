@@ -8,7 +8,7 @@ public class Arena extends JPanel{
     private Color bkg;
     public static int xSize;
     public static int ySize;
-    private Ball[] balls = new Ball[20];
+    private Ball[] balls = new Ball[1];
 
     public Arena(Color inBKG, int inX, int inY){
         System.out.println("Arena created");
@@ -51,7 +51,9 @@ public class Arena extends JPanel{
             System.out.println("balls[" + i + "] created");
         }
     }
-
+    public int getCount(){
+        return balls.length;
+    }
 
     @Override
     public void paintComponent(Graphics g){
