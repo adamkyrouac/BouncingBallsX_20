@@ -8,7 +8,7 @@ public class Arena extends JPanel{
     private Color bkg;
     public static int xSize;
     public static int ySize;
-    private Ball[] balls = new Ball[20];
+    private Ball[] balls = new Ball[5];
 
     public Arena(Color inBKG, int inX, int inY){
         //System.out.println("Arena created");
@@ -38,11 +38,13 @@ public class Arena extends JPanel{
     public void balls() {
         for (int i = 0; i < balls.length; i++) {
             //System.out.println(i + " time through loop: ");
+            int rXS;
+            int rYS;
             int rSize = (int)(Math.random() * 61 + 10);
             int rX = (int)(Math.random() * (xSize - rSize));
             int rY = (int)(Math.random() * (ySize - rSize));
-            int rXS = (int)(Math.random() * 37 - 16);
-            int rYS = (int)(Math.random() * 37 - 16);
+            do {rXS = (int)(Math.random() * 37 - 16);} while(!(Math.abs(rXS) >= 1));
+            do {rYS = (int)(Math.random() * 37 - 16);} while(!(Math.abs(rYS) >= 1));
             Color rColor = new Color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
             //System.out.println("Size: " + rSize + " X: " + rX + " Y: " + rY + " XS: " + rXS + " YS: " + rYS + " Color: " + rColor);
 
