@@ -4,13 +4,13 @@ import java.awt.*;
 public class Ball {
 
     //FIELDS
-    private int size;
-    private int x;
-    private int y;
+    private double size;
+    private double x;
+    private double y;
     private double xCenter;
     private double yCenter;
-    private int xSpeed;
-    private int ySpeed;
+    private double xSpeed;
+    private double ySpeed;
     int xDir;
     int yDir;
     private double speed;
@@ -79,15 +79,15 @@ public class Ball {
         return radius;
     }
 
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -99,11 +99,11 @@ public class Ball {
         return yCenter;
     }
 
-    public int getxSpeed() {
+    public double getxSpeed() {
         return xSpeed;
     }
 
-    public int getySpeed() {
+    public double getySpeed() {
         return ySpeed;
     }
 
@@ -114,9 +114,9 @@ public class Ball {
 
     public void draw(Graphics g){
         g.setColor(fill);
-        g.fillOval(x, y, size, size);
+        g.fillOval((int)x, (int)y, (int)size, (int)size);
         g.setColor(Color.BLACK);
-        g.drawOval(x, y, size, size);
+        g.drawOval((int)x, (int)y, (int)size, (int)size);
         //for(int i = 0; i < distance.length; i++) {
         //    distance[i] = Math.abs(Math.pow(/*other xCenter*/ - xCenter, 2) + Math.pow(/*other yCenter*/ - yCenter, 2));
         //}
@@ -146,9 +146,9 @@ public class Ball {
         if (x > Arena.xSize - size || x < 0) {
             //xSpeed = -1 * xSpeed;
             // Sets the x speed to a random number (0, total speed) that is int he opposite direction, then rounds down
-            xSpeed = -1 * xDir * (int)(Math.random() * speed);
+            xSpeed = -1 * xDir * (Math.random() * speed);
             // Sets the y speed to
-            ySpeed = yDir * (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+            ySpeed = yDir * Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
             if(xSpeed > 0) {xDir = 1;}
             if(xSpeed < 0) {xDir = -1;}
             if(ySpeed > 0) {yDir = 1;}
@@ -156,8 +156,8 @@ public class Ball {
         }
         if (y > Arena.ySize - size || y < 0) {
             //ySpeed = -1 * ySpeed;
-            ySpeed = -1 * yDir * (int)(Math.random() * speed);
-            xSpeed = xDir * (int)Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
+            ySpeed = -1 * yDir * (Math.random() * speed);
+            xSpeed = xDir * Math.sqrt(Math.pow(speed, 2) - Math.pow(ySpeed, 2));
             if(xSpeed > 0) {xDir = 1;}
             if(xSpeed < 0) {xDir = -1;}
             if(ySpeed > 0) {yDir = 1;}
