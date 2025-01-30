@@ -8,7 +8,7 @@ public class Arena extends JPanel{
     private Color bkg;
     public static int xSize;
     public static int ySize;
-    private Ball[] balls = new Ball[5];
+    private Ball[] balls = new Ball[20];
 
     public Arena(Color inBKG, int inX, int inY){
         //System.out.println("Arena created");
