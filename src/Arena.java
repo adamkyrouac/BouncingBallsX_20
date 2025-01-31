@@ -57,6 +57,9 @@ public class Arena extends JPanel{
 
     @Override
     public void paintComponent(Graphics g){
+        // calls the (not overridden) paintComponent() of JPanel and passes it a Graphics object.
+        // Bring back the right details for regular old paintComponent()
+        super.paintComponent(g);
 //        ball.draw(g);
 //        repaint(); // makes sure that even if the ball doesn't move, the background stays green
 //        ball.move(g);
