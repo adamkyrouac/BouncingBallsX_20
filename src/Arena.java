@@ -1,16 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.awt.event.*;
 
 public class Arena extends JPanel{
     private Color bkg;
     public static int xSize;
     public static int ySize;
     private Ball[] balls = new Ball[20];
+    private Ball me = new Ball(100, 200, 200, 0, 0, Color.BLACK);
 
     public Arena(Color inBKG, int inX, int inY){
+        // the panel can be focused on
+        setFocusable(true);
+        requestFocus();
         //System.out.println("Arena created");
         bkg = inBKG;
         //System.out.println("Background set");
@@ -30,6 +32,25 @@ public class Arena extends JPanel{
             public void componentResized(ComponentEvent z) {
                 xSize = getWidth();
                 ySize = getHeight();
+            }
+        });
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println(e.getKeyCode());
+                if(e.getKeyCode() == 68){
+                    // move the character to the right
+                    me.setX((int)me.getX() + 4);
+                }
+                if(e.getKeyCode() == 87){
+                    me.setY((int)me.getY() - 4);
+                }
+                if(e.getKeyCode() == 65){
+                    me.setX((int)me.getX() - 4);
+                }
+                if(e.getKeyCode() == 83){
+                    me.setY((int)me.getY() + 4);
+                }
             }
         });
     }
@@ -67,6 +88,9 @@ public class Arena extends JPanel{
             balls[i].draw(g);
             balls[i].move(g);
         }
+
+        me.draw(g);
+
 
         try{
             // change back to 16 later

@@ -153,7 +153,7 @@ public class Ball {
             if(ySpeed > 0) {yDir = 1;}
             if(ySpeed < 0) {yDir = -1;}
             speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
-            System.out.println(xSpeed + "\t" + ySpeed + "\t" + speed);
+            //System.out.println(xSpeed + "\t" + ySpeed + "\t" + speed);
         }
         if (y > Arena.ySize - size || y < 0) {
             //ySpeed = -1 * ySpeed;
@@ -164,7 +164,7 @@ public class Ball {
             if(ySpeed > 0) {yDir = 1;}
             if(ySpeed < 0) {yDir = -1;}
             speed = Math.sqrt(Math.pow(xSpeed, 2) + Math.pow(ySpeed, 2));
-            System.out.println(xSpeed + "\t" + ySpeed + "\t" + speed);
+            //System.out.println(xSpeed + "\t" + ySpeed + "\t" + speed);
         }
         back();
     }
