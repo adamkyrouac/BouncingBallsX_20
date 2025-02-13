@@ -188,6 +188,17 @@ public class Ball {
         bounce();
     }
 
+    public void move(Graphics g, int bounce){
+        x += xSpeed;
+        if(xSpeed > 0) {xDir = 1;}
+        if(xSpeed < 0) {xDir = -1;}
+        xCenter = x + radius;
+        y += ySpeed;
+        if(ySpeed > 0) {yDir = 1;}
+        if(ySpeed < 0) {yDir = -1;}
+        yCenter = y + radius;
+    }
+
     // make the balls bounce off each other
     // make the balls bounce off the walls at random angles.
 }

@@ -7,7 +7,7 @@ public class Arena extends JPanel{
     public static int xSize;
     public static int ySize;
     private Ball[] balls = new Ball[20];
-    private Ball me = new Ball(100, 200, 200, 0, 0, Color.BLACK);
+    private Ball me = new Ball(100, 200, 200, 0, 0, Color.WHITE);
 
     public Arena(Color inBKG, int inX, int inY){
         // the panel can be focused on
@@ -37,19 +37,34 @@ public class Arena extends JPanel{
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e.getKeyCode());
                 if(e.getKeyCode() == 68){
                     // move the character to the right
-                    me.setX((int)me.getX() + 4);
+                    me.setxSpeed(4);
                 }
                 if(e.getKeyCode() == 87){
-                    me.setY((int)me.getY() - 4);
+                    me.setySpeed(-4);
                 }
                 if(e.getKeyCode() == 65){
-                    me.setX((int)me.getX() - 4);
+                    me.setxSpeed(-4);
                 }
                 if(e.getKeyCode() == 83){
-                    me.setY((int)me.getY() + 4);
+                    me.setySpeed(4);
+                }
+            }
+
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode() == 68){
+                    // move the character to the right
+                    me.setxSpeed(0);
+                }
+                if(e.getKeyCode() == 87){
+                    me.setySpeed(0);
+                }
+                if(e.getKeyCode() == 65){
+                    me.setxSpeed(0);
+                }
+                if(e.getKeyCode() == 83){
+                    me.setySpeed(0);
                 }
             }
         });
@@ -90,6 +105,7 @@ public class Arena extends JPanel{
         }
 
         me.draw(g);
+        me.move(g, 0);
 
 
         try{
