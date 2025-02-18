@@ -8,6 +8,7 @@ public class Arena extends JPanel{
     public static int ySize;
     private Ball[] balls = new Ball[20];
     private Ball me = new Ball(100, 200, 200, 0, 0, Color.WHITE);
+    private ImageIcon scales = new ImageIcon("scales.jpg");
 
     public Arena(Color inBKG, int inX, int inY){
         // the panel can be focused on
@@ -93,9 +94,12 @@ public class Arena extends JPanel{
 
     @Override
     public void paintComponent(Graphics g){
+
         // calls the (not overridden) paintComponent() of JPanel and passes it a Graphics object.
         // Bring back the right details for regular old paintComponent()
         super.paintComponent(g);
+        g.drawImage(scales.getImage(), 0, 0, xSize, ySize, null);
+
 //        ball.draw(g);
 //        repaint(); // makes sure that even if the ball doesn't move, the background stays green
 //        ball.move(g);
